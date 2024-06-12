@@ -1,0 +1,74 @@
+<!-- app-shites-detail.component.html -->
+<div *ngIf="data.action === 'add'">
+  <form [formGroup]="formGroupAdd" (ngSubmit)="addNewUser()" class="form">
+    <mat-form-field class="form-element">
+      <input matInput formControlName="new_name" placeholder="Username" />
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput formControlName="new_first" placeholder="First Name" />
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput formControlName="new_last" placeholder="Last Name" />
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Email address" formControlName="new_email" />
+<!--      <mat-error *ngIf="!formGroupAdd.controls['new_email'].valid && formGroupAdd.controls['new_email'].touched">-->
+<!--        {{ getErrorEmail() }}-->
+<!--      </mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Password" formControlName="new_pass" type="password" />
+      <mat-hint>Choose a password of at least eight characters, one uppercase letter, and one number</mat-hint>
+<!--      <mat-error *ngIf="!formGroupAdd.controls['new_pass'].valid && formGroupAdd.controls['new_pass'].touched">-->
+<!--        {{ getErrorPassword() }}-->
+<!--      </mat-error>-->
+    </mat-form-field>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formGroupAdd.valid">Add User</button>
+    </div>
+  </form>
+</div>
+
+<!-- EDIT -->
+<div *ngIf="data.action === 'edit'">
+  <form [formGroup]="formGroup" (ngSubmit)="save()" class="form">
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Username" formControlName="name" />
+<!--      <mat-error *ngIf="!name.valid && name.touched">-->
+<!--        {{ titleAlert }}-->
+<!--      </mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="First name" formControlName="first" />
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Last name" formControlName="last" />
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Email address" formControlName="email" />
+<!--      <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">-->
+<!--        {{ getErrorEmail() }}-->
+<!--      </mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <mat-select placeholder="Is Active" formControlName="isActive" name="isActive">
+        <mat-option value="">None</mat-option>
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit Form</button>
+    </div>
+  </form>
+</div>
