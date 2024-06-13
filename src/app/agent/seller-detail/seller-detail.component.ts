@@ -18,6 +18,12 @@ export class SellerDetailComponent implements OnInit {
   editForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private yourService: AgentService) {
+    this.editForm = this.fb.group({
+      first_name: [''],
+      last_name: [''],
+      email: [''],
+      password: ['']
+    });
   }
 
   ngOnInit(): void {
@@ -25,35 +31,38 @@ export class SellerDetailComponent implements OnInit {
       const id = params.get('id');
       this.userId = id !== null ? +id : null;
       if (this.userId !== null) {
-        // Fetch the user details using this.userId
+        this.getUserDetails(this.userId);
       } else {
         // Handle the error, e.g., navigate to an error page or show a message
       }
     });
 
-
   }
 
-  getUserDetails(id: number, params: any): void {
-    this.yourService.getUserDetails().subscribe((data: any) => {
+
+  getUserDetails(id: number): void {
+    this.yourService.getUserDetails(id).subscribe((data: any) => {
       this.editForm.patchValue({
         first_name: data.first_name,
+        last_name: data.last_name,
         email: data.email,
         // Do not set the password here for security reasons
       });
     });
   }
 
-
   onSubmit(): void {
-    if (this.editForm.valid) {
-      // Handle form submission
-      console.log(this.editForm.value);
+    if (this.editForm.valid && this.userId !== null) {
+      this.yourService.updateUserDetails(this.userId, this.editForm.value).subscribe(
+        response => {
+          console.log('User details updated successfully', response);
+          // Optionally, refresh the list or navigate away
+        },
+        error => {
+          console.error('Error updating user details', error);
+        }
+      );
     }
   }
 }
-
-
-
-
 
