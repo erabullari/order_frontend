@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="heading">Edit personal information</div>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="form">
+    <label for="first_name">First Name</label>
+    <input formControlName="first_name" class="input" type="text" id="first_name">
+
+    <label for="email">Email</label>
+    <input formControlName="email" class="input" type="email" id="email">
+
+    <label for="password">Password</label>
+    <input formControlName="password" class="input" type="password" id="password" placeholder="Password">
+
+    <input class="login-button" type="submit" value="Save">
+  </form>
+</div>

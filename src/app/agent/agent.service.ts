@@ -36,5 +36,9 @@ export class AgentService {
     }
     return this.httpClient.delete(`${baseUrl}/${id}`);
   }
+
+  getUserDetails(id: number, params: any): Observable<any> {
+    return this.httpClient.get<any>(`${this.USERS_ENDPOINT}${id}`, params);
+  }
 }
 

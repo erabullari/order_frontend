@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {AgentService} from "../agent.service";
 import {first} from "rxjs";
-import {RouterLink, RouterModule} from "@angular/router";
+import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {CommonModule, NgForOf, NgIf} from "@angular/common";
 import {
   MatTableDataSource, MatTableModule
@@ -26,7 +26,8 @@ export interface User {
     NgForOf,
     NgIf,
     MatTableModule,
-    MatButton
+    MatButton,
+    RouterOutlet
   ],
   styleUrls: ['./seller.component.css']
 })
